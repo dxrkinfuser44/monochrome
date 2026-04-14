@@ -1,0 +1,15 @@
+/home/runner/work/monochrome/monochrome/linux/bin/Release/net8.0/Monochrome.Linux
+/home/runner/work/monochrome/monochrome/linux/bin/Release/net8.0/Monochrome.Linux.deps.json
+/home/runner/work/monochrome/monochrome/linux/bin/Release/net8.0/Monochrome.Linux.runtimeconfig.json
+/home/runner/work/monochrome/monochrome/linux/bin/Release/net8.0/Monochrome.Linux.dll
+/home/runner/work/monochrome/monochrome/linux/bin/Release/net8.0/Monochrome.Linux.pdb
+/home/runner/work/monochrome/monochrome/linux/obj/Release/net8.0/Monochrome.Linux.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/monochrome/monochrome/linux/obj/Release/net8.0/Monochrome.Linux.AssemblyInfoInputs.cache
+/home/runner/work/monochrome/monochrome/linux/obj/Release/net8.0/Monochrome.Linux.AssemblyInfo.cs
+/home/runner/work/monochrome/monochrome/linux/obj/Release/net8.0/Monochrome.Linux.csproj.CoreCompileInputs.cache
+/home/runner/work/monochrome/monochrome/linux/obj/Release/net8.0/Monochrome.Linux.sourcelink.json
+/home/runner/work/monochrome/monochrome/linux/obj/Release/net8.0/Monochrome.Linux.dll
+/home/runner/work/monochrome/monochrome/linux/obj/Release/net8.0/refint/Monochrome.Linux.dll
+/home/runner/work/monochrome/monochrome/linux/obj/Release/net8.0/Monochrome.Linux.pdb
+/home/runner/work/monochrome/monochrome/linux/obj/Release/net8.0/Monochrome.Linux.genruntimeconfig.cache
+/home/runner/work/monochrome/monochrome/linux/obj/Release/net8.0/ref/Monochrome.Linux.dll

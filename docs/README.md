@@ -17,6 +17,7 @@ This folder contains implementation, contributor, and automation docs for the Mo
 - [Security](./SECURITY.md) — storage, network, and dependency hygiene.
 - [Performance](./PERFORMANCE.md) — budgets and measurement approach.
 - [Assumptions](./ASSUMPTIONS.md) — documented defaults pending maintainer input.
+- Native stubs: `macos/` (Swift package), `windows/` and `linux/` (.NET console stubs) plus existing `ios/` Capacitor app; CI builds and uploads unsigned artifacts.
 
 ## AI Agent docs
 

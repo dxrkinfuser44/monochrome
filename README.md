@@ -264,6 +264,11 @@ We welcome contributions from the community! Please see our [Contributing Guide]
 
 - [Documentation Index](docs/README.md)
 - [Development Guide](docs/DEVELOPMENT.md)
+- [How Monochrome Works](docs/HOW_IT_WORKS.md)
+- [Testing Guide](docs/TESTING.md)
+- [Agent Guide](agent.md)
+- [Agent Skills](docs/AGENT_SKILLS.md)
+- [Agent Hooks](docs/AGENT_HOOKS.md)
 - [Contributing Guide](CONTRIBUTING.md)
 - [Docker Guide](DOCKER.md)
 - [Instances](INSTANCES.md)

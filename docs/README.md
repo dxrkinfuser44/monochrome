@@ -7,6 +7,16 @@ This folder contains implementation, contributor, and automation docs for the Mo
 - [Development Guide](./DEVELOPMENT.md) — local setup, scripts, and project layout.
 - [How Monochrome Works](./HOW_IT_WORKS.md) — runtime architecture and request/playback flow.
 - [Testing Guide](./TESTING.md) — test strategy and local test/lint/build commands.
+- [Architecture](./ARCHITECTURE.md) — current stack and native/offline target design.
+- [Implementation Plan](./IMPLEMENTATION_PLAN.md) — phased rollout for native platforms.
+- [Data Models](./DATA_MODELS.md) — cache schemas and model mapping.
+- [Dependencies](./DEPENDENCIES.md) — web + native stacks and tooling.
+- [Cache Architecture](./CACHE_ARCHITECTURE.md) — offline caching strategy.
+- [Sync Strategy](./SYNC_STRATEGY.md) — change tracking and reconciliation.
+- [Download Manager Spec](./DOWNLOAD_MANAGER_SPEC.md) — state machine and platform hooks.
+- [Security](./SECURITY.md) — storage, network, and dependency hygiene.
+- [Performance](./PERFORMANCE.md) — budgets and measurement approach.
+- [Assumptions](./ASSUMPTIONS.md) — documented defaults pending maintainer input.
 
 ## AI Agent docs
 

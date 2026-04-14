@@ -16,6 +16,7 @@
   <a href="#features">Features</a> -
   <a href="#usage">Usage</a> -
   <a href="#self-hosting">Self-Hosting</a> -
+  <a href="#documentation">Documentation</a> -
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
 
@@ -256,6 +257,17 @@ We welcome contributions from the community! Please see our [Contributing Guide]
 - Before You Contribute
 - Commit message conventions
 - Deployment information
+
+---
+
+## Documentation
+
+- [Documentation Index](docs/README.md)
+- [Development Guide](docs/DEVELOPMENT.md)
+- [Contributing Guide](CONTRIBUTING.md)
+- [Docker Guide](DOCKER.md)
+- [Instances](INSTANCES.md)
+- [Theme Guide](THEME_GUIDE.md)
 
 ---
 

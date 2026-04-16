@@ -1,0 +1,117 @@
+name: native-platform-builds
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build ${{ matrix.platform }}
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: android
+            runs-on: ubuntu-latest
+          - platform: linux
+            runs-on: ubuntu-latest
+          - platform: windows
+            runs-on: windows-latest
+          - platform: macos
+            runs-on: macos-latest
+          - platform: ios
+            runs-on: macos-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java (Android)
+        if: matrix.platform == 'android'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install system deps (Linux)
+        if: matrix.platform == 'linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-libav libgstreamer-plugins-base1.0-dev
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Cache bun
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb', 'bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Shared web build
+        run: bun run build
+
+      - name: Build iOS (simulator, unsigned)
+        if: matrix.platform == 'ios'
+        run: |
+          xcodebuild -project ios/App/App.xcodeproj -scheme App -sdk iphonesimulator -configuration Release CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" build
+          APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData -path "*Release-iphonesimulator/App.app" -maxdepth 6 | head -n 1)
+          mkdir -p artifacts/ios
+          if [ -d "$APP_PATH" ]; then
+            pushd "$(dirname "$APP_PATH")"
+            zip -r ../../artifacts/ios/Monochrome.app.zip "$(basename "$APP_PATH")"
+            popd
+          else
+            echo "App bundle not found" && ls ~/Library/Developer/Xcode/DerivedData && exit 1
+          fi
+
+      - name: Build macOS (Swift package)
+        if: matrix.platform == 'macos'
+        run: |
+          swift build -c release --package-path macos
+          mkdir -p artifacts/macos
+          cp macos/.build/release/MonochromeMac artifacts/macos/MonochromeMac
+
+      - name: Build Windows (dotnet)
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          dotnet build windows/Monochrome.Windows.csproj -c Release
+          New-Item -ItemType Directory -Path artifacts/windows -Force | Out-Null
+          Copy-Item windows/bin/Release/net8.0-windows/* artifacts/windows -Recurse -Force
+
+      - name: Build Linux (dotnet)
+        if: matrix.platform == 'linux'
+        run: |
+          dotnet build linux/Monochrome.Linux.csproj -c Release
+          mkdir -p artifacts/linux
+          cp -r linux/bin/Release/net8.0/* artifacts/linux
+
+      - name: Build Android placeholder
+        if: matrix.platform == 'android'
+        run: |
+          mkdir -p artifacts/android
+          echo "Android native build pending implementation." > artifacts/android/README.txt
+          tar -czf artifacts/android/web-dist.tar.gz dist
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: monochrome-${{ matrix.platform }}-${{ github.sha }}
+          path: artifacts/${{ matrix.platform }}

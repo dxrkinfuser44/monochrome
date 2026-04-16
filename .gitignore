@@ -21,3 +21,6 @@ package-lock.json
 .envrc
 # vim
 .lazy.lua
+# .NET build outputs
+**/bin/
+**/obj/
